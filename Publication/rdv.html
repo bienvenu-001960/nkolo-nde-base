@@ -1,0 +1,135 @@
+<?php
+  session_start();
+  $compteur=$_SESSION['login_'];
+  $_SESSION['medecin']="";
+
+
+  include("rec_rdv.php");
+?>
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords"
+    content="Medick Responsive web template, Bootstrap Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  <title>publication </title>
+  <link href="//fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+</head>
+
+<body>
+  <!--header-->
+  <?php
+    include("header.php");
+  ?>
+    <!-- //header -->
+    <!--/breadcrumb-bg-->
+    <div class="breadcrumb-bg py-5  w3l-inner-page-breadcrumb">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">PUBLICATION</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="index.html">Accueil</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <div class="position-relative">
+    <div class="shape overflow-hidden">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+
+  <section class="w3l-about-ab" id="about">
+    <div class="midd-w3 py-1">
+      <div class="container py-lg-5 py-md-4 py-2">
+
+        <div class="row">
+          <div class="col-lg-5 left-wthree-img">
+            <h6 class="title-subhny">Soyez le bienvenu</h6>
+            <h3> <b><?php echo "<b style='text-transform:uppercase;color:red'>".$_SESSION['login_']."</b>" ;?></b> </h3>  
+          </div>
+          <div class="col-lg-7 pl-lg-5 align-self">
+            <p class="">Nous croyons qu'il est important de fournir les meilleurs soins possibles à tous nos patients et nous souhaitons la bienvenue aux nouveaux patients.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="w3l-content-3 py-5">
+    <!-- /content-6-section -->
+    <div class="content-3-info py-3">
+      <div class="container py-lg-4">
+        <div class="row appointment-formw3">
+          <div class="col-lg-6 welcome-left">
+            <h6 class="title-subhny mb-2">ngoy nvanvay bienvenu</h6>
+            <h3 class="title-w3l two mb-3">Voir tous les oeuvres poster</h3>
+            <p class="mb-3">
+            Nous croyons qu'il est important de fournir les meilleurs soins possibles à tous nos patients et nous souhaitons la bienvenue aux nouveaux patients.</p>
+            <p class="mb-3">
+            Nous croyons qu'il est important de fournir les meilleurs soins possibles à tous nos patients et nous souhaitons la bienvenue aux nouveaux patients.</p>
+            <p class="mb-3">
+            Nous croyons qu'il est important de fournir les meilleurs soins possibles à tous nos patients et nous souhaitons la bienvenue aux nouveaux patients.</p>
+            <a class="btn btn-style btn-outline-light mt-sm-5 mt-4 mr-2" href="voir_rdv_user.php">Voir tous les oeuvres</a>
+          </div>
+          <div class="col-lg-6 free-appointment pl-lg-5 mt-5">
+            <div class="appointment-form">
+              <form action="" method="post" enctype="multipart/form-data">
+                <div>
+                  <div class="styled-input">
+                    <div class="appointment-form-field">
+                      <input type="text" disabled="disabled" name="fullname" value="<?=isset($compteur) ? $compteur: ""?>" placeholder="Full Name" required="">
+                    </div>
+                  </div>
+
+                  <div class="styled-input">
+                    <div class="appointment-form-field">
+                    <input type="text"  name="name_oeuvre" placeholder="Nom de l'oeuvre" required="">
+                    </div>
+                  </div>
+                  <div class="styled-input">
+                    <div class="appointment-form-field">
+                    <input type="file"  name="name_files" placeholder="Nom de l'oeuvre" required="">
+                    </div>
+                  </div>
+                  <div class="styled-input">
+                    <div class="appointment-form-field">
+                      <label for="">Desription de l'oeuvre</label>
+                          <textarea name="Description" id=""></textarea>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="appointment-btn text-lg-right">
+                  <button type="submit" class="btn btn-style btn-primary mt-4">Publier</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /map-->
+ <P></P>
+<br>
+  
+  <?php
+    include("footer.php"); 
+  ?>
+</body>
+
+</html>

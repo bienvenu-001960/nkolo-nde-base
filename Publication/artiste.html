@@ -1,0 +1,22 @@
+<?php
+
+    include("connexionBD.php");
+
+    extract($_POST);
+     
+    $valeur_id_artiste = $id_artiste;
+    // $valeur_nomEcole_id = $bnomEcole_id;
+
+    // echo $valeur_id_demandeur;
+
+    // die();
+
+    $select=$connexion->prepare("SELECT * FROM oeuvre WHERE id_artiste = :artiste_id ");
+    $select->execute([
+        'artiste_id' =>$valeur_id_artiste,
+    ]);
+    $reponse_select = $select->fetchAll();
+
+    echo $reponse_select[0]['photo'];
+
+?>

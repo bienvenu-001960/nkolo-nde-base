@@ -1,0 +1,180 @@
+<?php
+
+  // On démarre la session AVANT d'écrire du code HTML
+  session_start();
+  // On s'amuse à créer quelques variables de session dans $_SESSION
+  $medecin = $_SESSION['login_'];
+
+
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords"
+    content="Medick Responsive web template, Bootstrap Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  <title>Hopital Don Bosco </title>
+  <link href="//fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <!--header-->
+    <?php
+        include("header.php");
+    ?>
+    <!-- //header -->
+    <!--/breadcrumb-bg-->
+    <div class="breadcrumb-bg py-5  w3l-inner-page-breadcrumb">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">GESTION DE RENDEZ-VOUS</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="index.html">Accueil</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Gestion des rendez-vous </li>
+        </ul>
+      </div>
+    </div>
+
+  <!-- banner bottom shape -->
+  <div class="position-relative">
+    <div class="shape overflow-hidden">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+  <!-- banner bottom shape -->
+  <section class="w3l-contact-2 py-5" id="contact">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="contact-grids d-grid">
+        <div class="container">  
+          <div class="row">
+          <h2> <b>Liste des reservations des rendez-vous</b> </h2>
+            <div class="col-lg-offset-2 col-lg-9">
+                <div class="card">
+                <div class="card-body">
+                  <p class="card-title"></p>
+
+                  <?php
+
+                    include ("connexionBD.php");
+
+                    $select=$connexion->query("SELECT * FROM rdv WHERE medecin='$medecin' ");
+                    $answers = $select->fetchAll(PDO::FETCH_ASSOC);
+
+                  ?>
+
+                  <div class="table-responsive">
+                    <table id="recent-purchases-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Jour</th>
+                            <th>Heure</th>
+                            <th>Email</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      <?php foreach ($answers as $assoc=>$answer): ?> 
+                        <tr>
+                          <td><?=$answer['nom']?></td>
+                          <td><?=$answer['jour']?></td>
+                          <td><?=$answer['heure']?></td>
+                          <td><?=$answer['email']?></td>
+                          <td>
+                                <a href="rejeter_rdv.html?id=<?= $answer['id']; ?>">
+                                    <button type="button" class="btn btn-danger"> <b>Rejeter</b> </button>
+                                </a>
+                                <a href="valider_rdv.html?id=<?= $answer['id']; ?>">
+                                    <button type="button" class="btn btn-primary"> <b>Valider</b> </button>
+                                </a>
+                          </td>
+                        </tr>
+                      <?php endforeach ?>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>              
+      </div>
+
+      <div class="container py-lg-5 py-md-4 py-2">
+      <div class="contact-grids d-grid">
+        <div class="container">  
+          <div class="row">
+          <h2> <b>Horaire des rendez-vous</b> </h2>
+            <div class="col-lg-offset-2 col-lg-9">
+                <div class="card">
+                <div class="card-body">
+                  <p class="card-title"></p>
+
+                  <?php
+
+                    include ("connexionBD.php");
+
+                    $select=$connexion->query("SELECT * FROM programme WHERE medecin='$medecin' ");
+                    $answers = $select->fetchAll(PDO::FETCH_ASSOC);
+
+                  ?>
+
+                  <div class="table-responsive">
+                    <table id="recent-purchases-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th>Medecin</th>
+                            <th>Jour</th>
+                            <th>Heure</th>
+                            <th>Disponible</th>
+                            <th>Opérations</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      <?php foreach ($answers as $assoc=>$answer): ?> 
+                        <tr>
+                          <td><?=$answer['medecin']?></td>
+                          <td><?=$answer['jour']?></td>
+                          <td><?=$answer['heure']?></td>
+                          <td><?=$answer['occupe']?></td>
+                          <td>
+                                <a href="supprimer_rdv.html?id=<?= $answer['id']; ?>">
+                                    <button type="button" class="btn btn-danger"> <b>Retirer</b> </button>
+                                </a>
+                                <!-- <a href="modifier_compteur.php?id=<?= $answer['id']; ?>"> -->
+                                    <button type="button" class="btn btn-warning"> <b>Modifier</b> </button>
+                                <!-- </a> -->
+                                <a href="ajouter_rdv.html">
+                                    <button type="button" class="btn btn-primary"> <b>Ajouter</b> </button>
+                                </a>
+                          </td>
+                        </tr>
+                      <?php endforeach ?>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>      
+      </div>
+
+  </section>
+
+  
+
+<?php
+    include("footer.php");
+?>
+</body>
+
+</html>

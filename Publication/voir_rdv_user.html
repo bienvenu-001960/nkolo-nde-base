@@ -1,0 +1,142 @@
+<?php
+
+  // On démarre la session AVANT d'écrire du code HTML
+  session_start();
+  // On s'amuse à créer quelques variables de session dans $_SESSION
+  $user = $_SESSION['login_'];
+
+
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords"
+    content="Medick Responsive web template, Bootstrap Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  <title>Publication </title>
+  <link href="//fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  <!--header-->
+    <?php
+        include("header.php");
+    ?>
+    <!-- //header -->
+    <!--/breadcrumb-bg-->
+    <div class="breadcrumb-bg py-5  w3l-inner-page-breadcrumb">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">VOIR SES OEUVRES</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="rdv.html">Publier</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <!-- banner bottom shape -->
+  <div class="position-relative">
+    <div class="shape overflow-hidden">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+  <!-- banner bottom shape -->
+  <section class="w3l-contact-2 py-5" id="contact">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="contact-grids d-grid">
+        <div class="container">  
+          <div class="row">
+          <h2> Voici tous tes Oeuvres Mr <b> <?php echo $user; ?></b> </h2>
+            <div class="col-lg-offset-2 col-lg-9">
+                <div class="card">
+                <div class="card-body">
+                  <p class="card-title"></p>
+
+                  <?php
+
+                    include ("connexionBD.php");
+
+                    //$select=$connexion->query("SELECT * FROM oeuvre WHERE artiste ='$user' ");
+                    $select=$connexion->query("SELECT * FROM oeuvre WHERE artiste ='bienvenu' ");
+                    $answers = $select->fetchAll(PDO::FETCH_ASSOC);
+
+                  ?>
+
+                        <div class="row inner-sec-w3ls">
+                      <!--/services-grids-->
+                      <?php foreach ($answers as $assoc=>$answer): ?> 
+
+                      <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left mt-5">
+                        <div class="card img">
+                          <div class="card-body img">
+                            <a href="blog-single.html" class="d-block">
+                              <img src="photo/<?=$answer['photo']?>" alt="" class="img-fluid radius-image">
+                            </a>
+                            <div class="blog-des mt-4">
+                              <h5 class="card-title mb-2"><a href="blog-single.html"> <?=$answer['name_oeuvre']?>  </a>
+                              </h5>
+
+                              <p>
+                                  <?=$answer['description_oeuvre']?>
+                              </p>
+                              <ul class="admin-post mb-3">
+                                <li>
+                                  <span class="fa fa-user-o"></span><a href="#admin"> <?=$answer['artiste']?></a>
+                                </li>
+                                
+                              </ul>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <?php endforeach ?>
+
+                    </div>
+                </div>
+              </div>              
+      </div>
+
+  </section>
+
+  
+
+<?php
+    include("footer.php");
+?>
+
+<script>
+
+  $(function(){
+      $("#artiste").change(function(e){
+      e.preventDefault();
+      var id_artiste = $("#artiste").val();
+      $.post("./artiste.php", {id_artiste : id_artiste}, function(data){
+        var _data = data.split("________");
+        // alert(_data[9]);
+        // die();
+        $("#files").attr('src', 'photo/' + _data[0])
+
+        $("#generer").show();
+          // $("#montant").attr("disabled", true); // BLOQUER LA SAISIE D'UN CHAMP 
+          // alert(nom);
+          // alert(data); // afficher les donnees du formualires
+      })
+      })
+  })
+</script>
+
+
+</body>
+
+</html>

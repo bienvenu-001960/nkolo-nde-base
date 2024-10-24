@@ -1,0 +1,26 @@
+<?php
+    // session_start();
+
+    include("connexionBD.php");
+    
+    if(isset($_GET['id']) AND !empty($_GET['id'])){
+        $getId = $_GET['id'];
+        $recupUser = $connexion-> prepare('SELECT * FROM programme WHERE id = ?');
+        $recupUser->execute(array($getId));
+
+        // var_dump($recupUser); die;
+
+        if($recupUser->rowCount() > 0){
+            $deleteStudent = $connexion->prepare("UPDATE rdv SET statut='INVALIDE' WHERE id = ?");
+            $deleteStudent->execute(array($getId));
+
+            header('location:gest_rdv.php');
+        }else {
+            echo "Ce compteur n'a pas été trouvé";
+            header('location:gest_rdv.php');
+        }
+    }else {
+        echo " L'identifiant n'a pas ete recupere";
+    }
+
+?>

@@ -1,0 +1,19 @@
+<?php
+
+// ''CONNEXION MYSQL''
+$login="localhost";
+$user="root";
+$nomBD="publication";
+$pwd="";
+
+
+try {
+    $connexion=new PDO("mysql: host=$login; dbname=$nomBD",$user,$pwd);  
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+} catch (PDOException $e) {
+    echo "Echec de la connexion au serveur", $e->getMessage() ;
+}
+
+?>

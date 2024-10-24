@@ -1,0 +1,112 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+
+<?php
+  include("rec_ajouter_rdv.php");
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords"
+    content="Medick Responsive web template, Bootstrap Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  <title>Hopital Don Bosco </title>
+  <link href="//fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+</head>
+
+<body>
+  <!--header-->
+      <?php
+        include("header.php");
+      ?>
+    <!-- //header -->
+    <!--/breadcrumb-bg-->
+    <div class="breadcrumb-bg py-5  w3l-inner-page-breadcrumb">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">AJOUTER RENDEZ-VOUS</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="index.html">Accueil</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Rendez-vous </li>
+        </ul>
+      </div>
+    </div>
+
+  <!--//breadcrumb-bg-->
+  <!-- banner bottom shape -->
+  <div class="position-relative">
+    <div class="shape overflow-hidden">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+  <!-- banner bottom shape -->
+  <!--/contact-->
+  <section class="w3l-contact-2 py-5" id="contact">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="contact-grids d-grid">
+        <div class="contact-left">
+          <h6 class="title-subhny mb-1">Rendez-vous</h6>
+          <h3 class="title-w3l mb-2">Ajout d'un rendez-vous</h3>
+          <p>Nous disposons d'un centre d'assistance dédié pour répondre à tous vos besoins d'assistance. Nous vous répondons généralement dans les 12 à 24 heures.</p>
+          <div class="cont-details">
+            <div class="cont-top margin-up">
+              <div class="cont-left text-center">
+                <span class="fa fa-map-marker"></span>
+              </div>
+              <div class="cont-right">
+                <h6>Notre Addresse</h6>
+                <p>Lubumbashi, Haut-Katanga, RDC.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-right">
+          <form action="" method="post" class="signin-form">
+            <!-- <label for="">Medecin</label> -->
+            <select class="form-control contact-input" id="medecin" name="medecin" require="" >
+                <option value="generaliste">Medecin Général</option>
+                <option value="cardiologue">Medecin Cardiologue</option>
+                <option value="pediatre">Medecin Pediatre</option>
+                <option value="neurologue">Medecin Neurologue</option>
+                <option value="ophtalmologue">Medecin Ophtalmologue</option>
+                <option value="dentiste">Medecin Dentiste</option>
+            </select> <br>
+            <!-- <label for="">Jour</label> -->
+            <select class="form-control contact-input" id="jour" name="jour" require="" >
+                <option value="Lundi">Lundi</option>
+                <option value="Mardi">Mardi</option>
+                <option value="Mercredi">Mercredi</option>
+                <option value="Jeudi">Jeudi</option>
+                <option value="Vendredi">Vendredi</option>
+                <option value="Samedi">Samedi</option>
+                <option value="Dimanche">Dimanche</option>
+            </select> <br>
+            <!-- <input type="date" id="jour" name="jour"  placeholder="Nom et PostNom" class="form-control" require="" /> -->
+            <label for="">Heure Debut</label><input type="time" id="heure_debut" name="heure_debut"  placeholder="Votre email" class="form-control" require="" />
+            <label for="">Heure Fin</label><input type="time" id="heure_fin" name="heure_fin"  placeholder="Votre email" require="" />
+
+            <div class="w3l-submit text-lg-right">
+            <button id="valider" class="btn btn-style btn-primary">Envoyer</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+  </section>
+
+  <?php
+    include('footer.php');
+  ?>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<?php
+
+  // On démarre la session AVANT d'écrire du code HTML
+  session_start();
+  // On s'amuse à créer quelques variables de session dans $_SESSION
+  $_SESSION['login_']="";
+
+?>
+
+<?php
+  include("rec_authentif.php");
+?>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords"
+    content="Bootstrap Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  <title>Hopital Don Bosco </title>
+  <link href="//fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+</head>
+
+<body>
+  
+  <section class="w3l-contact-2 py-5" id="contact">
+    <div class="container py-lg-5 py-md-4 py-2">
+      <div class="contact-grids d-grid">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-offset-3 col-lg-6">
+              <h1 style="text-align:center" class="title-subhny">Authentification</h1>
+              <form action="" method="post" class="signin-form">
+                <div class="input-grids">
+                  <input type="text" name="login_" placeholder="Login" class="contact-input"
+                    required="" />
+                  <input type="password" name="motpasse"  placeholder="PassWord" class="contact-input"
+                    required="" />
+                </div>
+                <div class="w3l-submit text-lg-right">
+                <button class="btn btn-style btn-primary">Se connecter</button>
+                </div>
+
+
+              </form>
+              <a href="Compte.html"><h6 style="text-align:left" class="title-subhny mb-5">Créer un compte</h6></a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+  </section>
+
+</body>
+
+</html>

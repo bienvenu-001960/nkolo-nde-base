@@ -1,0 +1,159 @@
+<?php
+
+  session_start();
+  $name1=$_SESSION['login_'];
+  $docteur=$_SESSION['medecin'];
+
+  // var_dump($docteur);
+
+  include("rec_rdv1.php");
+
+
+?>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords"
+    content="Medick Responsive web template, Bootstrap Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+  <title>Hopital Don Bosco </title>
+  <link href="//fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+</head>
+
+<body>
+  <!--header-->
+  <?php
+    include("header.php");
+  ?>
+    <!-- //header -->
+    <!--/breadcrumb-bg-->
+    <div class="breadcrumb-bg py-5  w3l-inner-page-breadcrumb">
+      <div class="container pt-lg-5 pt-md-3 p-lg-4 pb-md-3 my-lg-3">
+        <h2 class="title pt-5">PRISE DE RENDEZ-VOUS</h2>
+        <ul class="breadcrumbs-custom-path mt-3 text-center">
+          <li><a href="index.html">Accueil</a></li>
+          <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Rendez-vous </li>
+        </ul>
+      </div>
+    </div>
+
+  <div class="position-relative">
+    <div class="shape overflow-hidden">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+
+  <section class="w3l-about-ab" id="about">
+    <div class="midd-w3 py-1">
+      <div class="container py-lg-5 py-md-4 py-2">
+
+        <div class="row">
+          <div class="col-lg-5 left-wthree-img">
+            <h6 class="title-subhny">Soyez le bienvenu</h6>
+            <h3> <b><?php echo "<b style='text-transform:uppercase;color:red'>".$_SESSION['login_']."</b>" ;?></b> </h3>  
+          </div>
+          <div class="col-lg-7 pl-lg-5 align-self">
+            <p class="">Nous croyons qu'il est important de fournir les meilleurs soins possibles à tous nos patients et nous souhaitons la bienvenue aux nouveaux patients.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="w3l-content-3 py-5">
+    <!-- /content-6-section -->
+    <div class="content-3-info py-3">
+      <div class="container py-lg-4">
+        <div class="row appointment-formw3">
+          <div class="col-lg-6 welcome-left">
+            <h6 class="title-subhny mb-2">Free Appointment</h6>
+            <h3 class="title-w3l two mb-3">Prendre un Rendez-vous</h3>
+            <p class="mb-3">
+            Nous croyons qu'il est important de fournir les meilleurs soins possibles à tous nos patients et nous souhaitons la bienvenue aux nouveaux patients.</p>
+            
+            <a class="btn btn-style btn-outline-light mt-sm-5 mt-4 mr-2" href="voir_rdv_user.html">Voir rendez-vous</a>
+          </div>
+          <div class="col-lg-6 free-appointment pl-lg-5 mt-5">
+            <div class="appointment-form">
+              <form action="" method="post">
+                    <div class="appointment-form-field">
+                      <input type="text" disabled="disabled" name="medecin" value="<?=isset($docteur) ? $docteur: ""?>" placeholder="Full Name" required="">
+                    </div>
+                <div class="fields-grid">
+
+                    <?php
+                        include ("connexionBD.php");
+
+                        $select=$connexion->query("SELECT * FROM programme where medecin= '$docteur' and occupe='Oui' ");
+                        $answers = $select->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
+
+                  <div class="styled-input">
+                    <div class="appointment-form-field">
+                      <input type="text" disabled="disabled" name="fullname" value="<?=isset($name1) ? $name1: ""?>" placeholder="Full Name" required="">
+                    </div>
+                  </div>
+
+                  <div class="styled-input">
+                    <div class="appointment-form-field">
+                      <input type="email" name="email" placeholder="Enter Email" required="">
+                    </div>
+                  </div>
+
+
+                  <div class="styled-input">
+                    <div class="appointment-form-field">
+                      <select id="jour" name="jour" required="Specialization">
+                        <?php foreach ($answers as $assoc=>$answer): ?>
+                            <option><?=$answer['jour']?></option>
+                        <?php endforeach ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="styled-input">
+                    <div class="appointment-form-field">
+                      <select id="heure" name="heure" required="Specialization">
+                        <?php foreach ($answers as $assoc=>$answer): ?>
+                            <option><?=$answer['heure']?></option>
+                        <?php endforeach ?>
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="appointment-btn text-lg-right">
+                  <button type="submit" class="btn btn-style btn-primary mt-4">Reserver</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /map-->
+  <div class="map-iframe">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317718.69319292053!2d-0.3817765050863085!3d51.528307984912544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C+UK!5e0!3m2!1sen!2spl!4v1562654563739!5m2!1sen!2spl"
+      width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen=""></iframe>
+  </div>
+
+  
+  <?php
+    include("footer.php");
+  ?>
+</body>
+
+</html>
